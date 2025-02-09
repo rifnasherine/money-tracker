@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+  font-family: "Inter","sans-serif";
+}
+
+body {
+  background-color: #17181F;
+  color: #ddd;
+}
+
+main {
+  max-width: 960px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+form {
+  margin-top: 20px;
+}
+
+form input {
+  width: 100%;
+  background-color: transparent;
+  color: #ddd;
+  border: 2px solid #30313d;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+form input[type="datetime-local"] {
+  color: #777;
+}
+
+form .basic {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+form button {
+  width: 100%;
+  margin-top: 5px;
+  border: 0;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #2ecc71;
+  color: #fff;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #27ae60;
+}
+
+.cancel-button {
+  margin-left: 10px;
+  background-color: #ff4444 !important;
+}
+
+.cancel-button:hover {
+  background-color: #cc0000 !important;
+}
+
+.transactions {
+  margin-top: 20px;
+}
+
+.transaction {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-top: 1px solid #30313d;
+}
+
+.transaction:first-child {
+  border-top: 0;
+}
+
+.transaction .name {
+  font-size: 1.1rem;
+}
+
+.transaction .description {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.transaction .price {
+  font-size: 1.1rem;
+}
+
+.transaction .price.green {
+  color: #2ecc71;
+}
+
+.transaction .price.red {
+  color: #e74c3c;
+}
+
+.transaction .datetime {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.transaction button {
+  padding: 5px 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: transparent;
+  color: #ddd;
+}
+
+.edit-button:hover {
+  background-color: #2ecc71;
+}
+
+.delete-button:hover {
+  background-color: #e74c3c;
+}
+
+.description input {
+  margin-top: 5px;
+}
+
+@media (max-width: 576px) {
+  .transaction {
+    flex-direction: column;
+  }
+  
+  .right {
+    margin-top: 10px;
+  }
+}
