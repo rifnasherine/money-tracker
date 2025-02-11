@@ -1,12 +1,15 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 
+console.log('API URL:', process.env.REACT_APP_API_URL);
+
 function App() {
   const [name, setName] = useState('');
   const [datetime, setDatetime] = useState('');
   const [description, setDescription] = useState('');
   const [transactions, setTransactions] = useState([]);
   const [editingTransaction, setEditingTransaction] = useState(null);
+  const [glowColor, setGlowColor] = useState('');
 
   useEffect(() => {
     getTransactions();
@@ -19,22 +22,25 @@ function App() {
     setTransactions(data);
   }
 
+  function triggerGlow(color) {
+    setGlowColor(color);
+    setTimeout(() => setGlowColor(''), 1000);
+  }
+
   function addNewTransaction(ev) {
     ev.preventDefault();
-    const price = name.split(' ')[0];
+    const price = parseFloat(name.split(' ')[0]);
     
     if (editingTransaction) {
-      // Update existing transaction
       updateTransaction(editingTransaction._id);
     } else {
-      // Add new transaction
       const url = process.env.REACT_APP_API_URL + '/transaction';
       fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           price,
-          name: name.substring(price.length + 1),
+          name: name.substring(price.toString().length + 1),
           description,
           datetime
         }),
@@ -42,6 +48,7 @@ function App() {
         .then(response => response.json())
         .then(json => {
           setTransactions([...transactions, json]);
+          triggerGlow(price > 0 ? 'green' : 'red');
           resetForm();
         })
         .catch(error => {
@@ -51,7 +58,7 @@ function App() {
   }
 
   function updateTransaction(id) {
-    const price = name.split(' ')[0];
+    const price = parseFloat(name.split(' ')[0]);
     const url = process.env.REACT_APP_API_URL + '/transaction/' + id;
     
     fetch(url, {
@@ -59,7 +66,7 @@ function App() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         price,
-        name: name.substring(price.length + 1),
+        name: name.substring(price.toString().length + 1),
         description,
         datetime
       }),
@@ -69,6 +76,7 @@ function App() {
         setTransactions(transactions.map(t => 
           t._id === id ? updatedTransaction : t
         ));
+        triggerGlow(price > 0 ? 'green' : 'red');
         resetForm();
       })
       .catch(error => {
@@ -109,6 +117,7 @@ function App() {
 
   return (
     <main>
+      <div className={`corner-glow ${glowColor}`}></div>
       <h1>₹{balance}</h1>
       <form onSubmit={addNewTransaction}>
         <div className='basic'>

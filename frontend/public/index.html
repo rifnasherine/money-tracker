@@ -14,9 +14,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Money Tracker App</title>
+    <title>Expense Tracker App</title>
   </head>
   <body>
+    <script>
+      function createMoney() {
+        const money = document.createElement("div");
+        money.classList.add("money");
+        money.innerHTML = "💵"; // Money emoji
+    
+        // Random position & size
+        money.style.left = Math.random() * 100 + "vw";
+        money.style.animationDuration = Math.random() * 3 + 2 + "s"; // Between 2s to 5s
+        money.style.fontSize = Math.random() * 20 + 10 + "px"; // Random sizes
+    
+        document.body.appendChild(money);
+    
+        // Remove money after animation
+        setTimeout(() => {
+          money.remove();
+        }, 5000);
+      }
+    
+      // Generate money at intervals
+      setInterval(createMoney, 300);
+    </script>
+    
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -26,8 +49,8 @@
       You can add webfonts, meta tags, or analytics to this file.
       The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
+      To begin the development, run npm start or yarn start.
+      To create a production bundle, use npm run build or yarn build.
     -->
   </body>
 </html>

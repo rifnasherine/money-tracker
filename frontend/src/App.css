@@ -1,28 +1,40 @@
 * {
   box-sizing: border-box;
-  font-family: "Inter","sans-serif";
+  font-family: "Inter", "sans-serif";
 }
 
 body {
   background-color: #17181F;
   color: #ddd;
+  position: relative;
+}
+
+.corner-glow {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: -1;
+  transition: background-color 0.5s ease-out;
 }
 
 main {
-  max-width: 960px;
-  margin: 30px auto;
-  padding: 0 20px;
+  max-width: 720px;
+  margin: 20px auto;
+  padding: 0 15px;
 }
 
 h1 {
   text-align: center;
   color: #fff;
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 form {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 form input {
@@ -30,7 +42,7 @@ form input {
   background-color: transparent;
   color: #ddd;
   border: 2px solid #30313d;
-  padding: 2px 5px;
+  padding: 5px;
   border-radius: 5px;
 }
 
@@ -49,7 +61,7 @@ form button {
   margin-top: 5px;
   border: 0;
   border-radius: 5px;
-  padding: 5px;
+  padding: 6px;
   background-color: #2ecc71;
   color: #fff;
   cursor: pointer;
@@ -60,7 +72,7 @@ form button:hover {
 }
 
 .cancel-button {
-  margin-left: 10px;
+  margin-left: 5px;
   background-color: #ff4444 !important;
 }
 
@@ -69,13 +81,13 @@ form button:hover {
 }
 
 .transactions {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .transaction {
   display: flex;
   justify-content: space-between;
-  padding: 5px 0;
+  padding: 4px 0;
   border-top: 1px solid #30313d;
 }
 
@@ -84,22 +96,22 @@ form button:hover {
 }
 
 .transaction .name {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .transaction .description {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #888;
 }
 
 .right {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
 }
 
 .transaction .price {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .transaction .price.green {
@@ -111,12 +123,12 @@ form button:hover {
 }
 
 .transaction .datetime {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #888;
 }
 
 .transaction button {
-  padding: 5px 8px;
+  padding: 4px 6px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -137,11 +149,64 @@ form button:hover {
 }
 
 @media (max-width: 576px) {
+  main {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  
   .transaction {
     flex-direction: column;
   }
   
   .right {
-    margin-top: 10px;
+    margin-top: 8px;
   }
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.money {
+  position: fixed;
+  top: -10vh;
+  font-size: 1.5rem;
+  animation: fall linear infinite;
+  pointer-events: none;
+}
+.corner-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  transition: background 0.8s ease-out;
+}
+
+.corner-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  transition: background 1s ease-in-out;
+}
+
+.corner-glow.green {
+  background: radial-gradient(circle at center, rgba(40, 222, 116, 0.15) 10%, transparent 70%);
+}
+
+.corner-glow.red {
+  background: radial-gradient(circle at center, rgba(231, 77, 60, 0.15) 10%, transparent 70%);
 }
